@@ -1,31 +1,32 @@
 # Importacion
-from calculos import calcular_descuento
-from regimen import filtrar_regimen
-from salida import salida_por_trabajador,salida_final
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import Vista.vista_inicio as  vista_inicio
+import Vista.vista_principal as  vista_principal
+import Vista.vista_lista_empleados as vista_empleados
+from Controlador.Utillidades import cambiar_vista, salir
 
 def main():
-    total_trabajadores = 0
-    total_sueldos_netos = 0.0
-    status = True
+    vista_actual="inicio"
 
-    while status:
-        sueldo_base = float(input("Ingrese el sueldo bruto: "))
-        print("\nRégimen pensionario:\n  1. AFP (10%)\n  2. ONP (13%)")
+    while True:
+        if vista_actual=="inicio":
+            vista_actual=cambiar_vista(vista_inicio.menu_inicio())
+        elif vista_actual=="principal":
+            vista_actual=cambiar_vista(vista_principal.menu_principal())
+        elif vista_actual=="lista empleados":
+            vista_actual=cambiar_vista(vista_empleados.lista_empleados())
+        elif vista_actual=="salida":
+            salir()
 
-        regimen = filtrar_regimen(input("Elija una opción: "))
-        descuento = calcular_descuento(sueldo_base, regimen)
-        sueldo_neto = sueldo_base - descuento
 
-        salida_por_trabajador(regimen, sueldo_base, descuento, sueldo_neto)
 
-        total_trabajadores += 1
-        total_sueldos_netos += sueldo_neto
 
-        respuesta = input("\n¿Calcular otro trabajador? (s/n): ")
-        status = respuesta == "s"
-        if respuesta not in ["s", "n"]:
-            print("Valor incorrecto, finalizando sesión.")
 
-    salida_final(total_trabajadores, total_sueldos_netos)
 
-main() 
+
+
+if __name__ == "__main__":
+    main() 

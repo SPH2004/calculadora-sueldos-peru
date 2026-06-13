@@ -1,0 +1,20 @@
+{
+    "descuentos":[
+        {
+            "id":1,
+            "categoria":"Regimen pensionario",
+            "nombre":"AFP",
+            "descripcion":"Aporte obligatorio a la AFP (Fondo privado)",
+            "tipo":"porcentual",
+            "descuento":0.1
+        },
+        {
+            "id":2,
+            "categoria":"Regimen pensionario",
+            "nombre":"ONP",
+            "descripcion":"Aporte al Sistema Nacional de Pensiones (Fondo público)",
+            "tipo":"porcentual",
+            "descuento":"0.13"
+        }
+    ]
+}
